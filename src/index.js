@@ -6,12 +6,30 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import store from './store/store';
 import Counter from './Counter';
+import ToDoList from './ToDoList';
+import { ErrorBoundary } from 'react-error-boundary';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+
+
+export default function FallBack() {
+  return (
+    <div>Error</div>
+  )
+}
+
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorBoundary fallback={<FallBack/>}>
 
-      <Counter/>
+      <ToDoList />
+
+      </ErrorBoundary>
+
+    
     </Provider>
     
   </React.StrictMode>
