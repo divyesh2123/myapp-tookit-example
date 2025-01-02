@@ -1,10 +1,19 @@
 import {configureStore} from '@reduxjs/toolkit';
 import counterslice from '../slice/couterslice'
 import todoslice from '../slice/todoslice'
- const store = configureStore({
+import todolistnew from '../slice/todolistnew'
+import createSagaMiddleware from "@redux-saga/core"; 
+import rootSaga from '../saga/rootsaga';
+
+const sagaMiddleware = createSagaMiddleware();
+const store = configureStore({
     reducer: {
         counter: counterslice,
-        todolist: todoslice
-    }
+        todolist: todoslice,
+        newtodolist:todolistnew
+    },
+    middleware: (getDefaultMiddleware) => 
+        getDefaultMiddleware().concat(sagaMiddleware)
 });
+sagaMiddleware.run(rootSaga);
 export default store;

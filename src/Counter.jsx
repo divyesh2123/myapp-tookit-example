@@ -10,7 +10,7 @@ export default function Counter() {
 
     const add = ()=>{
 
-        usedis(inc());
+        usedis({type: "INC_ASYNC"});
     }
 
     const dec1= ()=>{
